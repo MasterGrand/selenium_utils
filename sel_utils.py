@@ -28,7 +28,7 @@ class Browser(check_version.ChromeDriver):
         
         :param captcha_iframe: The iframe element that the captcha is located in
         """
-        audio_recognition.reCAPTCHA(self.browser, captcha_iframe)
+        audio_recognition.reCAPTCHA(self, captcha_iframe)
 
     @staticmethod
     def random_username(n=12):
@@ -51,7 +51,7 @@ class Browser(check_version.ChromeDriver):
         (optional)
         :param by: By.XPATH, By.ID, By.NAME, etc
         """
-        self.browser.switch_to.default_content()
+        self.switch_to.default_content()
         if type(xpath) == str:
             self._switch_to_iframe(xpath, timeout, by)
         else:
@@ -68,7 +68,7 @@ class Browser(check_version.ChromeDriver):
         :param by: By.XPATH, By.ID, By.CLASS_NAME, By.CSS_SELECTOR, By.NAME, By.LINK_TEXT,
         By.PARTIAL_LINK_TEXT, By.TAG_NAME, By.XPATH
         """
-        self.browser.switch_to.frame(self.get_and_wait(xpath=xpath, timeout=timeout, by=by))
+        self.switch_to.frame(self.get_and_wait(xpath=xpath, timeout=timeout, by=by))
 
     def get_and_wait(self, xpath, timeout=10, by=By.XPATH):
         """
@@ -80,5 +80,5 @@ class Browser(check_version.ChromeDriver):
         :param by: The locator strategy to use
         :return: Nothing.
         """
-        WebDriverWait(self.browser, timeout).until(EC.presence_of_element_located((by, xpath)))
-        return self.browser.find_element_by_xpath(xpath)
+        WebDriverWait(self, timeout).until(EC.presence_of_element_located((by, xpath)))
+        return self.find_element_by_xpath(xpath)
