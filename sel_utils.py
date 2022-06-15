@@ -9,7 +9,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from . import audio_recognition, check_version
 
 
-class Browser:
+class Browser(check_version.ChromeDriver):
     def __init__(self, headless=False, proxy=None):
         """
         It creates a browser session and returns it
@@ -19,7 +19,8 @@ class Browser:
         :param accs_list: The path to the file that contains the accounts to scrape, defaults to ./accs.txt
         (optional)
         """
-        self.browser = check_version.ChromeDriver().get_session(headless=headless, proxy=proxy)
+        super(Browser, self).__init__()
+        self.get_session(headless=headless, proxy=proxy)
 
     def solve_recaptcha(self, captcha_iframe):
         """

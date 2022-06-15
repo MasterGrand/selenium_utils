@@ -8,7 +8,7 @@ from selenium import webdriver
 from selenium.common import exceptions as expt
 
 
-class ChromeDriver:
+class ChromeDriver(webdriver.Chrome):
     def __init__(self, verbose=True):
         self.v = verbose
         self.update_url = "https://chromedriver.chromium.org/downloads"
@@ -100,8 +100,7 @@ class ChromeDriver:
         if proxy:
             options.add_argument(f"--proxy-server={proxy}")
         # options.add_argument('--ignore-certificate-errors')
-        browser = webdriver.Chrome("./chromedriver.exe", options=options)
-        return browser
+        super(ChromeDriver, self).__init__("./chromedriver.exe", options=options)
 
 if __name__ == "__main__":
     a = ChromeDriver()
