@@ -1,4 +1,5 @@
 import re
+import time
 import zipfile
 from sys import platform
 
@@ -32,6 +33,7 @@ class ChromeDriver:
         """
         if self.v:
             print("Automatically updating now...")
+        version = requests.get("https://chromedriver.storage.googleapis.com/LATEST_RELEASE").text
         if version is None:
             r = requests.get(self.update_url)
             t = r.text
@@ -50,8 +52,12 @@ class ChromeDriver:
             f.write(chromedriver.content)
 
         print(f"Extracting {zip_dir}")
-        with zipfile.ZipFile(zip_dir, "r") as zip_ref:
-            zip_ref.extractall(out_dir)
+        try:
+            with zipfile.ZipFile(zip_dir, "r") as zip_ref:
+                zip_ref.extractall(out_dir)
+        except zipfile.BadZipFile as e:
+            raise zipfile.BadZipFile(str(e) + f". The version {version} is not a valid chromedriver version.")
+
         print("Done.")
 
     def get_session(self, headless=True, auto_update=True, proxy=None):

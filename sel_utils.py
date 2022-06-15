@@ -6,14 +6,11 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 
-from . import audio_recognition
-from . import check_version
+from . import audio_recognition, check_version
 
 
 class Browser:
-    url = "https://reddit.com/"
-    place_url = "https://www.reddit.com/r/place/?cx={0}&cy={0}&px=96"
-    def __init__(self, headless=False, proxy=None, accs_list="./accs.txt"):
+    def __init__(self, headless=False, proxy=None):
         """
         It creates a browser session and returns it
         
@@ -22,7 +19,6 @@ class Browser:
         :param accs_list: The path to the file that contains the accounts to scrape, defaults to ./accs.txt
         (optional)
         """
-        self.accs_list = accs_list
         self.browser = check_version.ChromeDriver().get_session(headless=headless, proxy=proxy)
 
     def solve_recaptcha(self, captcha_iframe):
@@ -32,15 +28,6 @@ class Browser:
         :param captcha_iframe: The iframe element that the captcha is located in
         """
         audio_recognition.reCAPTCHA(self.browser, captcha_iframe)
-
-    def add_creds(self, username):
-        """
-        It adds a username and password to the list of credentials.
-        
-        :param username: The username to be used for the account
-        """
-        with open(self.accs_list, "a") as f:
-            f.write(f"{username}:{username[:-1]}\n")
 
     @staticmethod
     def random_username(n=12):
