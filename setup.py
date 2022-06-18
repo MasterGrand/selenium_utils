@@ -10,10 +10,10 @@ with open(".\\requirements.txt", "r") as f:
     requirements = f.read().splitlines()
 
 setup(
-    name="selenium_utilities",
+    name="more-selenium",
     version=1.0,
     author="Max",
-    author_email="None",
+    author_email="max@max.max",
     description="Better functionality for selenium",
     long_description=long_description,
     long_description_content_type="text/markdown",
@@ -27,9 +27,9 @@ setup(
     include_package_data=True,
     data_files=[
         ("audio", [
-            "audio_processing/ffmpeg.exe",
-            "audio_processing/ffplay.exe",
-            "audio_processing/ffprobe.exe",
+            "more-selenium/audio_processing/ffmpeg.exe",
+            "more-selenium/audio_processing/ffplay.exe",
+            "more-selenium/audio_processing/ffprobe.exe",
             ]),
     ],
 
