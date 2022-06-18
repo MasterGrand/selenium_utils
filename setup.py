@@ -10,16 +10,19 @@ with open(".\\requirements.txt", "r") as f:
     requirements = f.read().splitlines()
 
 setup(
-    name="selenium_utils",
+    name="selenium_utilities",
     version=1.0,
     author="Max",
+    author_email="None",
     description="Better functionality for selenium",
     long_description=long_description,
     long_description_content_type="text/markdown",
     packages=find_packages(),
     classifiers=[
-        "Programming Language :: Python :: 3"
+        "Programming Language :: Python :: 3",
     ],
+
+    url="https://github.com/MasterGrand/selenium_utils",
 
     include_package_data=True,
     data_files=[
