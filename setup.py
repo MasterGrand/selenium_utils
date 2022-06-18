@@ -6,12 +6,9 @@ except ImportError:
 with open("README.md", "r") as file:
     long_description = file.read()
 
-with open(".\\requirements.txt", "r") as f:
-    requirements = f.read().splitlines()
-
 setup(
     name="more-selenium",
-    version=1.0,
+    version=1.22,
     author="Max",
     author_email="max@max.max",
     description="Better functionality for selenium",
@@ -28,11 +25,14 @@ setup(
     data_files=[
         ("audio", [
             "more-selenium/audio_processing/ffmpeg.exe",
-            "more-selenium/audio_processing/ffplay.exe",
-            "more-selenium/audio_processing/ffprobe.exe",
             ]),
     ],
 
     python_requires='>2.7, <4',
-    install_requires=requirements,
+    install_requires=[
+        "selenium",
+        "SpeechRecognition",
+        "opencv-python",
+        "protobuf==3.19",
+    ],
 )
