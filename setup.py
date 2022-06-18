@@ -20,6 +20,16 @@ setup(
     classifiers=[
         "Programming Language :: Python :: 3"
     ],
+
+    include_package_data=True,
+    data_files=[
+        ("audio", [
+            "audio_processing/ffmpeg.exe",
+            "audio_processing/ffplay.exe",
+            "audio_processing/ffprobe.exe",
+            ]),
+    ],
+
     python_requires='>2.7, <4',
     install_requires=requirements,
 )
