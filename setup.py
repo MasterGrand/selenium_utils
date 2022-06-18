@@ -8,7 +8,7 @@ with open("README.md", "r") as file:
 
 setup(
     name="more-selenium",
-    version=1.22,
+    version=1.24,
     author="Max",
     author_email="max@max.max",
     description="Better functionality for selenium",
@@ -24,7 +24,7 @@ setup(
     include_package_data=True,
     data_files=[
         ("audio", [
-            "more-selenium/audio_processing/ffmpeg.exe",
+            "more_selenium/audio_processing/ffmpeg.exe",
             ]),
     ],
 

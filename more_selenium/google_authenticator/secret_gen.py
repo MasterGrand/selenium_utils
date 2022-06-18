@@ -9,7 +9,7 @@ from urllib.parse import parse_qs, urlparse
 
 import cv2
 
-import generated_python.google_auth_pb2
+from more_selenium.google_authenticator.generated_python import google_auth_pb2
 
 
 class GoogleAuthenticator:
@@ -68,7 +68,7 @@ class GoogleAuthenticator:
         data_encoded = params['data'][0]
 
         b64 = base64.b64decode(data_encoded)
-        payload = generated_python.google_auth_pb2.MigrationPayload()
+        payload = google_auth_pb2.MigrationPayload()
         payload.ParseFromString(b64)
 
         otp = payload.otp_parameters
