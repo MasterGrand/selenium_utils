@@ -81,4 +81,4 @@ class Browser(check_version.ChromeDriver):
         :return: Nothing.
         """
         WebDriverWait(self, timeout).until(EC.presence_of_element_located((by, xpath)))
-        return self.find_element_by_xpath(xpath)
+        return self.find_element(by=by, value=xpath)
